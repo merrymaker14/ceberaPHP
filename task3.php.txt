@@ -1,0 +1,8 @@
+Относительно структуры хранения - здесь стандартное many-to-many. Соответственно, три таблицы: authors, books и authors_books. В первой и второй ключи author_id и book_id соотв. Третья (связная таблица) состоит из двух колонок author_id и book_id, которые вместе являются составным ключом.
+
+SELECT b.name, COUNT(b.book_id) AS cnt
+FROM books AS b
+INNER JOIN authors_books AS ab
+WHERE b.book_id=ab.book_id
+GROUP BY b.book_id
+HAVING cnt>2
